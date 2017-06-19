@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class CountryModule { 
+export class CountryModule {
 	id : number;
  	name : string;
 }
