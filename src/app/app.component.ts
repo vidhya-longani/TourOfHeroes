@@ -1,26 +1,19 @@
 import { Component } from '@angular/core';
-import { CountryModule } from './country/country.module';
+import { Country} from './country/country';
 
 @Component({
   selector: 'app-root',
   template: `<h1>{{title}}</h1>
   			<div>
   				<div class="float-left">
-	  			<h2>My Travel List</h2>
-				<ul class="heroes">
-				  <li *ngFor="let country of countries" (click) = "onSelect(country)" [class.selected] = 'selectedCountry == country'>
-				    <span class="badge">{{country.id}}</span> {{country.name}}
-				  </li>
-				</ul>
+		  			<h2>My Travel List</h2>
+					<ul class="heroes">
+					  <li *ngFor="let country of countries" (click) = "onSelect(country)" [class.selected] = 'selectedCountry == country'>
+					    <span class="badge">{{country.id}}</span> {{country.name}}
+					  </li>
+					</ul>
 				</div>
-				<div *ngIf="selectedCountry" class="float-left">
-					<h2>{{selectedCountry.name}} details!</h2>
-					<div><label>id: </label>{{selectedCountry.id}}</div>
-					<div>
-					    <label>name: </label>
-					    <input [(ngModel)]="selectedCountry.name" placeholder="name"/>
-					</div>
-				</div>
+				<app-country [country]='selectedCountry'></app-country>
 			</div>`,
   styles: [`
   		  .float-left {
@@ -77,7 +70,7 @@ import { CountryModule } from './country/country.module';
 })
 export class AppComponent {
   	title = 'World Tour';
-  	countries : CountryModule[] = [
+  	countries : Country[] = [
 	  { id: 11, name: 'France' },
 	  { id: 12, name: 'Malaysia' },
 	  { id: 13, name: 'Singapore' },
@@ -89,9 +82,9 @@ export class AppComponent {
 	  { id: 19, name: 'Australia' },
 	  { id: 20, name: 'Canada' }
 	];
-	selectedCountry : CountryModule;
+	selectedCountry : Country;
 
-	onSelect(country){
+	onSelect(country: Country){
 		this.selectedCountry = country;
 	}
 }
