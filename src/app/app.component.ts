@@ -89,6 +89,6 @@ export class AppComponent implements OnInit {
 	}
 
 	getCountryList() {
-		this.countries = this.countryService.getCountries();
+		this.countryService.getCountries().then(countries => this.countries = countries);
 	}
 }
