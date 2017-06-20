@@ -22,7 +22,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 	    {
 	    	path: 'countries',
 	    	component: CountryComponent
-	    }
+	    },
+	    {
+	    	path: 'dashboard',
+	    	component: DashboardComponent
+	    },
+	    {
+		  path: '',
+		  redirectTo: '/dashboard',
+		  pathMatch: 'full'
+		}
     ])
   ],
   providers: [],
