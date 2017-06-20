@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Country} from './country/country';
-import { CountryService} from './country/country.service';
+import { Country} from './country';
+import { CountryService} from './country.service';
 
 @Component({
   selector: 'app-country',
-  template: `<h1>{{title}}</h1>
+  template: `
   			<div>
   				<div class="float-left">
 		  			<h2>My Travel List</h2>
@@ -70,9 +70,9 @@ import { CountryService} from './country/country.service';
 	`],
 	providers : [CountryService]
 })
+
 export class CountryComponent implements OnInit {
 
-  	title = 'World Tour';
   	countries : Country[];
 	selectedCountry : Country;
 
@@ -91,6 +91,4 @@ export class CountryComponent implements OnInit {
 	onSelect(country: Country){
 		this.selectedCountry = country;
 	}
-
-	
 }
