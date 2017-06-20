@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Country} from './country/country';
 import { CountryService} from './country/country.service';
 
@@ -70,16 +70,25 @@ import { CountryService} from './country/country.service';
 	`],
 	providers : [CountryService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   	title = 'World Tour';
   	countries : Country[];
 	selectedCountry : Country;
 
-	constructor(countryService : CountryService){
+	constructor(private countryService : CountryService){
 
+	}
+
+	ngOnInit() {
+		this.getCountryList();
 	}
 
 	onSelect(country: Country){
 		this.selectedCountry = country;
+	}
+
+	getCountryList() {
+		this.countries = this.countryService.getCountries();
 	}
 }
