@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Country} from './country/country';
+import { CountryService} from './country/country.service';
 
 @Component({
   selector: 'app-root',
@@ -66,23 +67,17 @@ import { Country} from './country/country';
 		    margin-right: .8em;
 		    border-radius: 4px 0 0 4px;
 		  }
-	`]
+	`],
+	providers : [CountryService]
 })
 export class AppComponent {
   	title = 'World Tour';
-  	countries : Country[] = [
-	  { id: 11, name: 'France' },
-	  { id: 12, name: 'Malaysia' },
-	  { id: 13, name: 'Singapore' },
-	  { id: 14, name: 'Dubai' },
-	  { id: 15, name: 'Thailand' },
-	  { id: 16, name: 'New Zealand' },
-	  { id: 17, name: 'England' },
-	  { id: 18, name: 'Indonesia' },
-	  { id: 19, name: 'Australia' },
-	  { id: 20, name: 'Canada' }
-	];
+  	countries : Country[];
 	selectedCountry : Country;
+
+	constructor(countryService : CountryService){
+
+	}
 
 	onSelect(country: Country){
 		this.selectedCountry = country;
