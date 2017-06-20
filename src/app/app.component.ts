@@ -4,13 +4,28 @@ import { CountryModule } from './country/country.module';
 @Component({
   selector: 'app-root',
   template: `<h1>{{title}}</h1>
-  			<h2>My Travel List</h2>
-			<ul class="heroes">
-			  <li *ngFor="let country of countries">
-			    <span class="badge">{{country.id}}</span> {{country.name}}
-			  </li>
-			</ul>`,
+  			<div>
+  				<div class="float-left">
+	  			<h2>My Travel List</h2>
+				<ul class="heroes">
+				  <li *ngFor="let country of countries" (click) = "onSelect(country)" [class.selected] = 'selectedCountry == country'>
+				    <span class="badge">{{country.id}}</span> {{country.name}}
+				  </li>
+				</ul>
+				</div>
+				<div *ngIf="selectedCountry" class="float-left">
+					<h2>{{selectedCountry.name}} details!</h2>
+					<div><label>id: </label>{{selectedCountry.id}}</div>
+					<div>
+					    <label>name: </label>
+					    <input [(ngModel)]="selectedCountry.name" placeholder="name"/>
+					</div>
+				</div>
+			</div>`,
   styles: [`
+  		  .float-left {
+  		  	float: left;
+  		  }
 		  .selected {
 		    background-color: #CFD8DC !important;
 		    color: white;
@@ -61,8 +76,8 @@ import { CountryModule } from './country/country.module';
 	`]
 })
 export class AppComponent {
-  title = 'World Tour';
-  countries : CountryModule[] = [
+  	title = 'World Tour';
+  	countries : CountryModule[] = [
 	  { id: 11, name: 'France' },
 	  { id: 12, name: 'Malaysia' },
 	  { id: 13, name: 'Singapore' },
@@ -74,4 +89,9 @@ export class AppComponent {
 	  { id: 19, name: 'Australia' },
 	  { id: 20, name: 'Canada' }
 	];
+	selectedCountry : CountryModule;
+
+	onSelect(country){
+		this.selectedCountry = country;
+	}
 }
