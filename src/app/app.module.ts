@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { CountryComponent } from './country/country.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { CountryService } from './country/country.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 		}
     ])
   ],
-  providers: [],
+  providers: [CountryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

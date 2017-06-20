@@ -67,8 +67,7 @@ import { CountryService} from './country.service';
 		    margin-right: .8em;
 		    border-radius: 4px 0 0 4px;
 		  }
-	`],
-	providers : [CountryService]
+	`]
 })
 
 export class CountryComponent implements OnInit {
