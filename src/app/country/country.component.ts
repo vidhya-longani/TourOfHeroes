@@ -80,7 +80,8 @@ export class CountryComponent implements OnInit {
 	}
 
 	getCountryList() {
-		this.countryService.getCountries().then(countries => this.countries = countries);
+		this.countryService.getCountries().
+			then(countries => this.countries = countries);
 	}
 
 	ngOnInit() {

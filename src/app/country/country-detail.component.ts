@@ -1,5 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
+import { Location } from '@angular/common';
 import { Country} from './country';
+import { CountryService} from './country.service';
+
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-country-detail',
@@ -10,9 +15,33 @@ import { Country} from './country';
 				    <label>name: </label>
 				    <input [(ngModel)]="country.name" placeholder="name"/>
 				</div>
+				 <button (click)="goBack()">Back</button>
 			</div>`,
   styleUrls: ['./country.component.css']
 })
-export class CountryDetailComponent {
+
+export class CountryDetailComponent implements OnInit {
 	@Input() country : Country;
+
+	constructor(
+		private countryService : CountryService,
+		private location : Location,
+		private route : ActivatedRoute
+	){
+
+	}
+
+	ngOnInit(){
+
+		this.route.params.
+			switchMap((params :Params) => 
+				this.countryService.getCountry(+params['id'])).
+			subscribe(
+				country => this.country = country
+			);
+	}
+
+	goBack(){
+		this.location.back();
+	}
 }
