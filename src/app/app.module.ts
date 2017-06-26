@@ -15,12 +15,15 @@ import { CountryService } from './country/country.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { AutoColorDirective}   from './auto-color.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
     CountryComponent,
     CountryDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    AutoColorDirective
   ],
   imports: [
     BrowserModule,
