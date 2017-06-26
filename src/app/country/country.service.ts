@@ -41,4 +41,20 @@ export class CountryService {
 	    .then(() => country)
 	    .catch(this.handleError);
 	}
+
+	create(name: string): Promise<Country> {
+	  return this.http
+	    .post(this.countriesUrl, JSON.stringify({name: name}), {headers: this.headers})
+	    .toPromise()
+	    .then(res => res.json().data as Country)
+	    .catch(this.handleError);
+	}
+
+	delete(id: number): Promise<void> {
+	  const url = `${this.countriesUrl}/${id}`;
+	  return this.http.delete(url, {headers: this.headers})
+	    .toPromise()
+	    .then(() => null)
+	    .catch(this.handleError);
+	}
 }

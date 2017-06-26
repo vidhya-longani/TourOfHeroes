@@ -34,4 +34,22 @@ export class CountryComponent implements OnInit {
 	gotoDetail(){
 		this.router.navigate(['/detail',this.selectedCountry.id]);
 	}
+
+	add(name: string): void {
+	  name = name.trim();
+	  if (!name) { return; }
+	  this.countryService.create(name)
+	    .then(hero => {
+	      this.countries.push(hero);
+	      this.selectedCountry = null;
+	    });
+	}
+
+	delete(country: Country): void {
+  	  this.countryService.delete(country.id)
+      .then(() => {
+        this.countries = this.countries.filter(h => h !== country);
+        if (this.selectedCountry === country) { this.selectedCountry = null; }
+      });
+	}
 }
