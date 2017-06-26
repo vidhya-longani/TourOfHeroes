@@ -14,6 +14,7 @@ import 'rxjs/add/operator/switchMap';
 				<div>
 				    <label>name: </label>
 				    <input [(ngModel)]="country.name" placeholder="name"/>
+				    <button (click)="save()">Save</button>
 				</div>
 				 <button (click)="goBack()">Back</button>
 			</div>`,
@@ -43,5 +44,10 @@ export class CountryDetailComponent implements OnInit {
 
 	goBack(){
 		this.location.back();
+	}
+
+	save(): void {
+	  this.countryService.update(this.country)
+	    .then(() => this.goBack());
 	}
 }
