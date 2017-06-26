@@ -1,0 +1,16 @@
+<div>
+	<div class="float-left">
+		<h2>My Travel List</h2>
+		<ul class="countries">
+		  <li *ngFor="let country of countries" (click) = "onSelect(country)" [class.selected] = 'selectedCountry == country'>
+		    <span class="badge">{{country.id}}</span> {{country.name}}
+		  </li>
+		</ul>
+	</div>
+	<div *ngIf="selectedCountry">
+	  <h2>
+	    {{selectedCountry.name | uppercase}} is my next destination
+	  </h2>
+	  <button (click)="gotoDetail()">View Details</button>
+	</div>
+</div>
